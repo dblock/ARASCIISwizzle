@@ -38,12 +38,15 @@
     [self.view addSubview:portraitOfLadyTitle withTopMargin:@"10"];
     portraitOfLadyTitle.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
     portraitOfLadyTitle.text = @"ROGIER VAN DER WEYDEN";
+    portraitOfLadyTitle.textAlignment = NSTextAlignmentCenter;
     [portraitOfLadyTitle alignCenterXWithView:self.view predicate:@"0"];
 
     UILabel *portraitOfLadySubtitle = [[UILabel alloc] init];
     [self.view addSubview:portraitOfLadySubtitle withTopMargin:@"5"];
     portraitOfLadySubtitle.font = [UIFont fontWithName:@"HelveticaNeue" size:8];
     portraitOfLadySubtitle.text = @"Portrait of a Lady, ca. 1460\nNational Gallery of Art, Washington DC";
+    portraitOfLadySubtitle.numberOfLines = 2;
+    portraitOfLadySubtitle.textAlignment = NSTextAlignmentCenter;
     [portraitOfLadySubtitle alignCenterXWithView:self.view predicate:@"0"];
     
     UIButton *toggle = [[UIButton alloc] init];
