@@ -7,7 +7,7 @@
 //
 
 #import "UIImageView+ASCII.h"
-#import <objc/objc-runtime.h>
+#import <objc/runtime.h>
 
 static const NSString * UIImageViewASCII_CharacterMap = @" .,;_-`*";
 static const NSInteger UIImageViewASCII_MinimumWidthOrHeight = 120;
@@ -69,14 +69,14 @@ static BOOL _ascii = NO;
         [resultString appendString:line];
         [resultString appendString:@"\n"];
     }
- 
+
     return [self imageFromText:resultString size:source.size];
 }
 
 - (NSString *)getRGBAsFromImage:(UIImage*)image atX:(NSInteger)xx andY:(NSInteger)yy count:(NSInteger)count
 {
     NSMutableString * characterResult = [[NSMutableString alloc] initWithCapacity:count];
-    
+
     // First get the image into your data buffer
     CGImageRef imageRef = [image CGImage];
     NSUInteger width = CGImageGetWidth(imageRef);
@@ -91,10 +91,10 @@ static BOOL _ascii = NO;
         bitsPerComponent, bytesPerRow, colorSpace,
         kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
     CGColorSpaceRelease(colorSpace);
-    
+
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
     CGContextRelease(context);
-    
+
     // Now your rawData contains the image data in the RGBA8888 pixel format.
     int byteIndex = (int) ((bytesPerRow * yy) + xx * bytesPerPixel);
     for (int ii = 0 ; ii < count ; ++ii)
@@ -102,7 +102,7 @@ static BOOL _ascii = NO;
         int r = rawData[byteIndex] & 0xff;
         int g = (rawData[byteIndex] >> 8 ) & 0xff;
         int b = (rawData[byteIndex] >> 16 ) & 0xff;
-        
+
         byteIndex += 4;
         NSInteger characterIndex =  7 - (((int)(r+g+b)/3)>>5) & 0x7 ;
         NSRange range;
@@ -111,7 +111,7 @@ static BOOL _ascii = NO;
         NSString * resultCharacter = [UIImageViewASCII_CharacterMap substringWithRange:range];
         [characterResult appendString:resultCharacter];
     }
-    
+
     free(rawData);
     return characterResult;
 }
@@ -122,23 +122,23 @@ static BOOL _ascii = NO;
     // set the font type and size
     UIFont *font = [UIFont fontWithName:@"Courier" size:12.0];
     CGSize size = [text sizeWithAttributes:@{ NSFontAttributeName: font }];
-    
+
     UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-    
+
     // add a shadow, to avoid clipping the shadow you should make the context size bigger
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSetShadowWithColor(ctx, CGSizeMake(1.0, 1.0), 5.0, [[UIColor grayColor] CGColor]);
-    
+
     // draw in context, you can use also drawInRect:withFont:
     [text drawAtPoint:CGPointMake(0.0, 0.0) withAttributes:@{
         NSFontAttributeName: font,
         NSForegroundColorAttributeName: self.backgroundColor == [UIColor blackColor] ? [UIColor yellowColor] : [UIColor blackColor]
     }];
-    
+
     // transfer image
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
+
     return [self imageWithImage:image scaledToSize:imageSize];
 }
 
@@ -158,10 +158,10 @@ static BOOL _ascii = NO;
 {
     float oldWidth = image.size.width;
     float scaleFactor = width / oldWidth;
-    
+
     float newHeight = image.size.height * scaleFactor;
     float newWidth = oldWidth * scaleFactor;
-    
+
     UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
     [image drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();

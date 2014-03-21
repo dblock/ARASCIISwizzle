@@ -7,7 +7,7 @@
 //
 
 #import "UIFont+ASCII.h"
-#import <objc/objc-runtime.h>
+#import <objc/runtime.h>
 
 @implementation UIFont (ASCII)
 
