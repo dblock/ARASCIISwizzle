@@ -60,7 +60,7 @@ static BOOL _ascii = NO;
 // http://weakreference.wordpress.com/2010/11/17/ios-creating-an-ascii-art-from-uiimage/
 - (UIImage*)asciImageFromImage:(UIImage*)source;
 {
-    source = [self imageThumbnail:source];
+    source = [self imageWithImage:source scaledToWidth:64];
     NSInteger imgWidth = source.size.width;
     NSInteger imgHeight = source.size.height;
     NSMutableString * resultString = [[NSMutableString alloc] initWithCapacity:imgWidth * imgHeight];
@@ -69,8 +69,8 @@ static BOOL _ascii = NO;
         [resultString appendString:line];
         [resultString appendString:@"\n"];
     }
-    
-    return [self imageFromText:resultString];
+ 
+    return [self imageFromText:resultString size:source.size];
 }
 
 - (NSString *)getRGBAsFromImage:(UIImage*)image atX:(NSInteger)xx andY:(NSInteger)yy count:(NSInteger)count
@@ -87,9 +87,9 @@ static BOOL _ascii = NO;
     NSUInteger bytesPerRow = bytesPerPixel * width;
     NSUInteger bitsPerComponent = 8;
     CGContextRef context = CGBitmapContextCreate(
-                                                 rawData, width, height,
-                                                 bitsPerComponent, bytesPerRow, colorSpace,
-                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+        rawData, width, height,
+        bitsPerComponent, bytesPerRow, colorSpace,
+        kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
     CGColorSpaceRelease(colorSpace);
     
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
@@ -117,7 +117,7 @@ static BOOL _ascii = NO;
 }
 
 // http://stackoverflow.com/questions/2765537/how-do-i-use-the-nsstring-draw-functionality-to-create-a-uiimage-from-text
-- (UIImage *)imageFromText:(NSString *)text
+- (UIImage *)imageFromText:(NSString *)text size:(CGSize)imageSize
 {
     // set the font type and size
     UIFont *font = [UIFont fontWithName:@"Courier" size:12.0];
@@ -131,15 +131,15 @@ static BOOL _ascii = NO;
     
     // draw in context, you can use also drawInRect:withFont:
     [text drawAtPoint:CGPointMake(0.0, 0.0) withAttributes:@{
-                                                             NSFontAttributeName: font,
-                                                             NSForegroundColorAttributeName: self.backgroundColor == [UIColor blackColor] ? [UIColor yellowColor] : [UIColor blackColor]
-                                                             }];
+        NSFontAttributeName: font,
+        NSForegroundColorAttributeName: self.backgroundColor == [UIColor blackColor] ? [UIColor yellowColor] : [UIColor blackColor]
+    }];
     
     // transfer image
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    return image;
+    return [self imageWithImage:image scaledToSize:imageSize];
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
@@ -153,41 +153,20 @@ static BOOL _ascii = NO;
     return newImage;
 }
 
-// https://gist.github.com/djbriane/160791
-- (UIImage *)imageThumbnail:(UIImage *)image {
-	// Create a thumbnail version of the image for the event object.
-	CGSize size = image.size;
-	CGSize croppedSize;
-	CGFloat ratio = 64.0;
-	CGFloat offsetX = 0.0;
-	CGFloat offsetY = 0.0;
-	
-	// check the size of the image, we want to make it
-	// a square with sides the size of the smallest dimension
-	if (size.width > size.height) {
-		offsetX = (size.height - size.width) / 2;
-		croppedSize = CGSizeMake(size.height, size.height);
-	} else {
-		offsetY = (size.width - size.height) / 2;
-		croppedSize = CGSizeMake(size.width, size.width);
-	}
-	
-	// Crop the image before resize
-	CGRect clippedRect = CGRectMake(offsetX * -1, offsetY * -1, croppedSize.width, croppedSize.height);
-	CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], clippedRect);
-	// Done cropping
-	
-	// Resize the image
-	CGRect rect = CGRectMake(0.0, 0.0, ratio, ratio);
-	
-	UIGraphicsBeginImageContext(rect.size);
-	[[UIImage imageWithCGImage:imageRef] drawInRect:rect];
-	UIImage *thumbnail = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-    CGImageRelease(imageRef);
-	// Done Resizing
-	
-	return thumbnail;
+// http://stackoverflow.com/questions/7645454/resize-uiimage-by-keeping-aspect-ratio-and-width
+- (UIImage *)imageWithImage:(UIImage*)image scaledToWidth:(CGFloat)width
+{
+    float oldWidth = image.size.width;
+    float scaleFactor = width / oldWidth;
+    
+    float newHeight = image.size.height * scaleFactor;
+    float newWidth = oldWidth * scaleFactor;
+    
+    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+    [image drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 @end

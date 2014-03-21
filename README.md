@@ -36,8 +36,8 @@ Try it out with CocoaPods also,
 ## Credits
 
 * [Creating ASCII Art from UIImage](http://weakreference.wordpress.com/2010/11/17/ios-creating-an-ascii-art-from-uiimage)
-* [How to Draw a String](http://stackoverflow.com/questions/2765537/how-do-i-use-the-nsstring-draw-functionality-to-create-a-uiimage-from-text)
-* [Creating Thumbnails from UIImage](https://gist.github.com/djbriane/160791)
+* [Creating a UIImage from Text](http://stackoverflow.com/questions/2765537/how-do-i-use-the-nsstring-draw-functionality-to-create-a-uiimage-from-text)
+* [Resizing a UIImage](http://stackoverflow.com/questions/7645454/resize-uiimage-by-keeping-aspect-ratio-and-width)
 
 ## Copyright & License
 
