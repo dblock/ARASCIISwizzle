@@ -60,16 +60,15 @@ static BOOL _ascii = NO;
 // http://weakreference.wordpress.com/2010/11/17/ios-creating-an-ascii-art-from-uiimage/
 - (UIImage*)asciImageFromImage:(UIImage*)source;
 {
-    source = [self imageWithImage:source scaledToWidth:64];
+    source = [self imageWithImage:source scaledToWidth:source.size.width/4];
     NSInteger imgWidth = source.size.width;
     NSInteger imgHeight = source.size.height;
-    NSMutableString * resultString = [[NSMutableString alloc] initWithCapacity:imgWidth * imgHeight];
+    NSMutableString * resultString = [[NSMutableString alloc] initWithCapacity:(imgWidth + 1) * imgHeight];
     for (int i = 0; i < imgHeight; i++) {
         NSString * line = [self getRGBAsFromImage:source atX:0 andY:i count:imgWidth];
         [resultString appendString:line];
         [resultString appendString:@"\n"];
     }
-
     return [self imageFromText:resultString size:source.size];
 }
 
@@ -100,11 +99,11 @@ static BOOL _ascii = NO;
     for (int ii = 0 ; ii < count ; ++ii)
     {
         int r = rawData[byteIndex] & 0xff;
-        int g = (rawData[byteIndex] >> 8 ) & 0xff;
-        int b = (rawData[byteIndex] >> 16 ) & 0xff;
+        int g = (rawData[byteIndex] >> 8) & 0xff;
+        int b = (rawData[byteIndex] >> 16) & 0xff;
 
         byteIndex += 4;
-        NSInteger characterIndex =  7 - (((int)(r+g+b)/3)>>5) & 0x7 ;
+        NSInteger characterIndex =  7 - (((int)(r + g + b)/3) >> 5) & 0x7 ;
         NSRange range;
         range.location = characterIndex;
         range.length = 1;
@@ -143,9 +142,9 @@ static BOOL _ascii = NO;
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
-    //UIGraphicsBeginImageContext(newSize);
-    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
-    // Pass 1.0 to force exact pixel size.
+    // UIGraphicsBeginImageContext(newSize);
+    // pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution)
+    // pass 1.0 to force exact pixel size
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
     [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
