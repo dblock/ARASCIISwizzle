@@ -4,6 +4,10 @@
 [![Version](http://cocoapod-badges.herokuapp.com/v/ARASCIISwizzle/badge.png)](http://cocoadocs.org/docsets/ARASCIISwizzle)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/ARASCIISwizzle/badge.png)](http://cocoadocs.org/docsets/ARASCIISwizzle)
 
+ASCII-art all the things. Transforms all UIImageView's into ASCII art and replaces all fonts with Courier.
+Built for the [Artsy.net](http://artsy.net) March 2014 Hackathon.
+Combine with [DRKonamiCode](https://github.com/objectiveSee/DRKonamiCode) and you're in business!
+
 ## Demo
 
 ![](Demo/Screenshots/swizzle-portrait-of-a-lady.gif)
