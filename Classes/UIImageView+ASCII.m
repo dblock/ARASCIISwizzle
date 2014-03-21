@@ -74,14 +74,13 @@ static BOOL _ascii = NO;
 
 - (NSString *)getRGBAsFromImage:(UIImage*)image atX:(NSInteger)xx andY:(NSInteger)yy count:(NSInteger)count
 {
-    NSMutableString * characterResult = [[NSMutableString alloc] initWithCapacity:count];
-
     // First get the image into your data buffer
     CGImageRef imageRef = [image CGImage];
     NSUInteger width = CGImageGetWidth(imageRef);
     NSUInteger height = CGImageGetHeight(imageRef);
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     unsigned char *rawData = malloc(height * width * 4);
+    unsigned char *stringData = malloc(count);
     NSUInteger bytesPerPixel = 4;
     NSUInteger bytesPerRow = bytesPerPixel * width;
     NSUInteger bitsPerComponent = 8;
@@ -104,15 +103,12 @@ static BOOL _ascii = NO;
 
         byteIndex += 4;
         NSInteger characterIndex =  7 - (((int)(r + g + b)/3) >> 5) & 0x7 ;
-        NSRange range;
-        range.location = characterIndex;
-        range.length = 1;
-        NSString * resultCharacter = [UIImageViewASCII_CharacterMap substringWithRange:range];
-        [characterResult appendString:resultCharacter];
+        stringData[ii] = [UIImageViewASCII_CharacterMap characterAtIndex:characterIndex];
     }
 
     free(rawData);
-    return characterResult;
+    
+    return [[NSString alloc] initWithBytesNoCopy:stringData length:count encoding:NSASCIIStringEncoding freeWhenDone:YES];
 }
 
 // http://stackoverflow.com/questions/2765537/how-do-i-use-the-nsstring-draw-functionality-to-create-a-uiimage-from-text
