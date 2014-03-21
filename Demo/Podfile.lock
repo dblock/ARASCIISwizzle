@@ -24,7 +24,7 @@ EXTERNAL SOURCES:
     :path: ../ARASCIISwizzle.podspec
 
 SPEC CHECKSUMS:
-  ARASCIISwizzle: 52dab3682685016cd07c65ac674b4a22747bf5bd
+  ARASCIISwizzle: 7e1cb2a41f048f176cf742127a706bbd2f5aebfa
   Expecta: 5c147dedfea5fbcf773995f7e65020abcc936ce5
   EXPMatchers+FBSnapshotTest: 1b9506577e494191565ff51ffd5b1e76339d727b
   FBSnapshotTestCase: 188c80bfcb72e744eb0b99d45989d12687c40cf8
