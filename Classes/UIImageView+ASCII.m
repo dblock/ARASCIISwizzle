@@ -68,7 +68,8 @@ static BOOL _ascii = NO;
 // http://weakreference.wordpress.com/2010/11/17/ios-creating-an-ascii-art-from-uiimage/
 - (UIImage*)asciImageFromImage:(UIImage*)source;
 {
-    source = [self imageWithImage:source scaledToWidth:source.size.width/4];
+    NSInteger screenWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]);
+    source = [self imageWithImage:source scaledToWidth:(screenWidth / 10)]; // target about 32 characters wide
     NSInteger imgWidth = source.size.width;
     NSInteger imgHeight = source.size.height;
     NSMutableString * resultString = [[NSMutableString alloc] initWithCapacity:(imgWidth + 1) * imgHeight];
@@ -140,6 +141,7 @@ static BOOL _ascii = NO;
 
     // transfer image
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
     UIGraphicsEndImageContext();
 
     return [self imageWithImage:image scaledToSize:imageSize];

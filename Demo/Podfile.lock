@@ -1,10 +1,10 @@
 PODS:
   - ARASCIISwizzle (1.0.0)
   - Expecta (0.2.4)
-  - EXPMatchers+FBSnapshotTest (1.0):
+  - EXPMatchers+FBSnapshotTest (HEAD based on 1.0):
     - Expecta
     - FBSnapshotTestCase
-  - FBSnapshotTestCase (1.1)
+  - FBSnapshotTestCase (HEAD based on 1.1)
   - FLKAutoLayout (0.1.1)
   - ORStackView (1.0.0):
     - FLKAutoLayout (~> 0.1)
@@ -13,8 +13,8 @@ PODS:
 DEPENDENCIES:
   - ARASCIISwizzle (from `../ARASCIISwizzle.podspec`)
   - Expecta (~> 0.2.3)
-  - EXPMatchers+FBSnapshotTest (~> 1.0)
-  - FBSnapshotTestCase (~> 1.1)
+  - EXPMatchers+FBSnapshotTest (HEAD)
+  - FBSnapshotTestCase (HEAD)
   - FLKAutoLayout (~> 0.1.1)
   - ORStackView (~> 1.0.0)
   - Specta (~> 0.2.1)

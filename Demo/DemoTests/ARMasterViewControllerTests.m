@@ -31,10 +31,10 @@ it(@"displays image", ^{
     window.rootViewController = vc;
     expect(vc.view).willNot.beNil();
     [window makeKeyAndVisible];
-    expect(vc.view).to.haveValidSnapshotNamed(@"default");
+    expect(vc.view).will.haveValidSnapshotNamed(@"default");
 });
 
-it(@"switches to ascii", ^{
+it(@"switches to ascii", ^AsyncBlock{
     UIFont.ascii = YES;
     UIImageView.ascii = YES;
     expect(UIFont.ascii).to.beTruthy();
@@ -43,7 +43,13 @@ it(@"switches to ascii", ^{
     window.rootViewController = vc;
     expect(vc.view).willNot.beNil();
     [window makeKeyAndVisible];
-    expect(vc.view).to.haveValidSnapshotNamed(@"ascii");
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        [NSThread sleepForTimeInterval:1.0];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            expect(vc.view).will.haveValidSnapshotNamed(@"ascii");
+            done();
+        });
+    });
 });
 
 SpecEnd
