@@ -48,7 +48,7 @@ static BOOL _ascii = NO;
 
 + (UIFont *)fontWithNameASCII:(NSString *)name size:(CGFloat)fontSize
 {
-    return [self fontWithNameASCII:@"Courier" size:fontSize];
+    return [self fontWithNameASCII:@"Courier New" size:fontSize];
 }
 
 @end

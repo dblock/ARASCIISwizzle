@@ -51,7 +51,15 @@ static BOOL _ascii = NO;
 - (void)setImageASCII:(UIImage *)image
 {
     if (image.size.width > UIImageViewASCII_MinimumWidthOrHeight || image.size.height > UIImageViewASCII_MinimumWidthOrHeight) {
-        [self setImageASCII:[self asciImageFromImage:image]];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            UIImage *asciiImage = [self asciImageFromImage:image];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                // the ASCII flag may have flipped during processing
+                if (UIImageView.ascii) {
+                    [self setImageASCII:asciiImage];
+                }
+            });
+        });
     } else {
         [self setImageASCII:image];
     }
@@ -115,7 +123,7 @@ static BOOL _ascii = NO;
 - (UIImage *)imageFromText:(NSString *)text size:(CGSize)imageSize
 {
     // set the font type and size
-    UIFont *font = [UIFont fontWithName:@"Courier" size:12.0];
+    UIFont *font = [UIFont fontWithName:@"Courier New" size:12.0];
     CGSize size = [text sizeWithAttributes:@{ NSFontAttributeName: font }];
 
     UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
