@@ -116,7 +116,7 @@ static BOOL _ascii = NO;
     }
 
     free(rawData);
-    
+
     return [[NSString alloc] initWithBytesNoCopy:stringData length:count encoding:NSASCIIStringEncoding freeWhenDone:YES];
 }
 
@@ -141,25 +141,10 @@ static BOOL _ascii = NO;
 
     // transfer image
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    
+
     UIGraphicsEndImageContext();
 
-    if (self.contentMode == UIViewContentModeScaleToFill) {
-        return image;
-    } else {
-        return [self imageWithImage:image scaledToSize:imageSize];
-    }
-}
-
-- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
-    // UIGraphicsBeginImageContext(newSize);
-    // pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution)
-    // pass 1.0 to force exact pixel size
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
+    return image;
 }
 
 // http://stackoverflow.com/questions/7645454/resize-uiimage-by-keeping-aspect-ratio-and-width
