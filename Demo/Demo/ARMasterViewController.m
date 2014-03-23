@@ -28,7 +28,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     UIImageView *portraitOfLady = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Images/rogier-van-der-weyden-portrait-of-a-lady.jpg"]];
-    portraitOfLady.contentMode = UIViewContentModeScaleAspectFit;
+    portraitOfLady.contentMode = UIViewContentModeScaleToFill;
     [self.view addSubview:portraitOfLady withTopMargin:@"160"];
     [portraitOfLady alignCenterXWithView:self.view predicate:@"0"];
     [portraitOfLady alignCenterYWithView:self.view predicate:@"0"];

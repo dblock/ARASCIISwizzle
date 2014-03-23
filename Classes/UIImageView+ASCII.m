@@ -144,7 +144,11 @@ static BOOL _ascii = NO;
     
     UIGraphicsEndImageContext();
 
-    return [self imageWithImage:image scaledToSize:imageSize];
+    if (self.contentMode == UIViewContentModeScaleToFill) {
+        return image;
+    } else {
+        return [self imageWithImage:image scaledToSize:imageSize];
+    }
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
