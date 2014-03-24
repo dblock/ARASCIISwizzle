@@ -16,6 +16,8 @@ Combine with [DRKonamiCode](https://github.com/objectiveSee/DRKonamiCode) and yo
 
 ## Usage
 
+### Replace All Images and Fonts
+
 ``` objc
 #import <ARASCIISwizzle/UIFont+ASCII.h>
 #import <ARASCIISwizzle/UIImageView+ASCII.h>
@@ -26,6 +28,24 @@ Combine with [DRKonamiCode](https://github.com/objectiveSee/DRKonamiCode) and yo
     UIImageView.ascii = ! UIImageView.ascii;
 }
 ```
+
+### ASCII Art API
+
+``` objc
+UIImage *image = ...
+
+// ASCII NSString representation of the image
+NSString *asciiText = image.asciiText;
+
+// ASCII UIImage representation of the image
+UIFont *font = [UIFont fontWithName:@"Courier New" size:12.0];
+UIColor *color = [UIColor yellowColor];
+UIImage *asciiImage = [image asciiImage:font color:color];
+```
+
+### Combine with Konami Code
+
+Toggle swizzling with *Up Up Down Down Left Right Left Right B A* gestures. See [this gist](https://gist.github.com/dblock/9732650).
 
 ## Installation
 
