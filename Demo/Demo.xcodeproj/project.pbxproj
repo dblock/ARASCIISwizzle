@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		07DDEB3EBEEC4C6FAF715BF1 /* libPods-DemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98DB4ADA533041DD9D9E7647 /* libPods-DemoTests.a */; };
 		273E9EE865984F44A8AF2A9D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2957D8BD1FB4630AD6F922F /* libPods.a */; };
-		3C0FC75F18E08E2C00A705F8 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C0FC75E18E08E2C00A705F8 /* Reveal.framework */; };
 		3C562C6618DC8B4500DE3F38 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 3C562C6518DC8B4500DE3F38 /* Images */; };
 		3CAAE89C18DFB2480028318D /* UIImage+ASCIITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAAE89B18DFB2480028318D /* UIImage+ASCIITests.m */; };
 		3CB0E6D718C8B9E2009CE8DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CB0E6D618C8B9E2009CE8DB /* Foundation.framework */; };
@@ -38,7 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3C0FC75E18E08E2C00A705F8 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = "../../../../../../Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/Reveal.framework"; sourceTree = "<group>"; };
 		3C562C6518DC8B4500DE3F38 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		3CAAE89B18DFB2480028318D /* UIImage+ASCIITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ASCIITests.m"; sourceTree = "<group>"; };
 		3CB0E6D318C8B9E2009CE8DB /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,7 +71,6 @@
 			files = (
 				3CB0E6D918C8B9E2009CE8DB /* CoreGraphics.framework in Frameworks */,
 				3CB0E6DB18C8B9E2009CE8DB /* UIKit.framework in Frameworks */,
-				3C0FC75F18E08E2C00A705F8 /* Reveal.framework in Frameworks */,
 				3CB0E6D718C8B9E2009CE8DB /* Foundation.framework in Frameworks */,
 				273E9EE865984F44A8AF2A9D /* libPods.a in Frameworks */,
 			);
@@ -117,7 +114,6 @@
 		3CB0E6D518C8B9E2009CE8DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3C0FC75E18E08E2C00A705F8 /* Reveal.framework */,
 				3CB0E6D618C8B9E2009CE8DB /* Foundation.framework */,
 				3CB0E6D818C8B9E2009CE8DB /* CoreGraphics.framework */,
 				3CB0E6DA18C8B9E2009CE8DB /* UIKit.framework */,
