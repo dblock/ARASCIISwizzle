@@ -40,7 +40,7 @@ static const NSString * UIImageViewASCII_CharacterMap = @" .,;_-`*";
 
 + (NSString *)getRGBAsFromImage:(UIImage*)image atX:(NSInteger)xx andY:(NSInteger)yy count:(NSInteger)count
 {
-    // First get the image into your data buffer
+    // get the image into a data buffer
     CGImageRef imageRef = [image CGImage];
     NSUInteger width = CGImageGetWidth(imageRef);
     NSUInteger height = CGImageGetHeight(imageRef);
@@ -50,16 +50,18 @@ static const NSString * UIImageViewASCII_CharacterMap = @" .,;_-`*";
     NSUInteger bytesPerPixel = 4;
     NSUInteger bytesPerRow = bytesPerPixel * width;
     NSUInteger bitsPerComponent = 8;
+    
     CGContextRef context = CGBitmapContextCreate(
-                                                 rawData, width, height,
-                                                 bitsPerComponent, bytesPerRow, colorSpace,
-                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+        rawData, width, height,
+        bitsPerComponent, bytesPerRow, colorSpace,
+        kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    
     CGColorSpaceRelease(colorSpace);
     
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
     CGContextRelease(context);
     
-    // Now your rawData contains the image data in the RGBA8888 pixel format.
+    // rawData contains the image data in the RGBA8888 pixel format
     int byteIndex = (int) ((bytesPerRow * yy) + xx * bytesPerPixel);
     for (int ii = 0 ; ii < count ; ++ii)
     {
