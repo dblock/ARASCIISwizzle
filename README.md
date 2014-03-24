@@ -31,7 +31,11 @@ Combine with [DRKonamiCode](https://github.com/objectiveSee/DRKonamiCode) and yo
 
 ### ASCII Art API
 
+See [UIImage+ASCII.h](Classes/UIImage+ASCII.h).
+
 ``` objc
+#import <ARASCIISwizzle/UIImage+ASCII.h>
+
 UIImage *image = ...
 
 // ASCII NSString representation of the image
