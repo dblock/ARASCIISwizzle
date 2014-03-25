@@ -10,7 +10,7 @@ Combine with [DRKonamiCode](https://github.com/objectiveSee/DRKonamiCode) and yo
 
 ## Demo
 
-![](Demo/Screenshots/swizzle-portrait-of-a-lady.gif)
+![](Screenshots/swizzle-portrait-of-a-lady.gif)
 
 [Portrait of a Lady, Rogier Van Der Weyden](https://artsy.net/artwork/rogier-van-der-weyden-portrait-of-a-lady-1), courtesy of the National Gallery of Art, Washington D.C., via Artsy.net
 

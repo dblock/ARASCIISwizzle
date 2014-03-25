@@ -20,5 +20,5 @@ DerivedData
 *.ipa
 Gemfile.lock
 .bundle
-Demo/Pods
 .idea/
+Pods
