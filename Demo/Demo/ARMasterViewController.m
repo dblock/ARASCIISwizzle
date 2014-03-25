@@ -22,7 +22,7 @@
     UIImageView *portraitOfLady = [[UIImageView alloc] initWithImage:portraitOfLadyImage];
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
-    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+    if (UIDeviceOrientationIsPortrait(orientation))
     {
         [self.view addSubview:portraitOfLady];
         CGFloat targetWidth = CGRectGetWidth([UIScreen mainScreen].bounds) * 0.7f;
@@ -31,7 +31,7 @@
         [portraitOfLady alignCenterXWithView:self.view predicate:@"0"];
         [portraitOfLady alignTopEdgeWithView:self.view predicate:@"100"];
     }
-    else if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight)
+    else
     {
         [self.view addSubview:portraitOfLady];
         CGFloat targetWidth = CGRectGetWidth([UIScreen mainScreen].bounds) * 0.5f;
@@ -47,12 +47,12 @@
     portraitOfLadyTitle.text = @"ROGIER VAN DER WEYDEN";
     portraitOfLadyTitle.textAlignment = NSTextAlignmentCenter;
 
-    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+    if (UIDeviceOrientationIsPortrait(orientation))
     {
         [portraitOfLadyTitle alignAttribute:NSLayoutAttributeTop toAttribute:NSLayoutAttributeBottom ofView:portraitOfLady predicate:@"20"];
         [portraitOfLadyTitle alignCenterXWithView:self.view predicate:@"0"];
     }
-    else if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight)
+    else
     {
         [portraitOfLadyTitle alignTopEdgeWithView:self.view predicate:@"100"];
         [portraitOfLadyTitle alignTrailingEdgeWithView:self.view predicate:@"-20"];
