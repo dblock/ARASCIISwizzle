@@ -25,20 +25,17 @@ it(@"asciiText", ^{
     expect([asciiText substringToIndex:5]).to.equal(@"*****");
 });
 
-pending(@"asciiImage", ^{
-    // BUG: fails with different image sizes (retina?)
-    
+it(@"asciiImage", ^{
     expect(portraitOfLady).toNot.beNil();
     UIImage *asciiImage = [portraitOfLady asciiImage:[UIFont fontWithName:@"Courier New" size:12.0f] color:[UIColor yellowColor]];
     expect(asciiImage).toNot.beNil();
 
+    NSString *referenceImagePath2x = [NSString stringWithFormat:@"%@/UIImageASCII/ascii@2x.png", @(FB_REFERENCE_IMAGE_DIR)];
+    
     // NSData *asciiImageData = UIImagePNGRepresentation(asciiImage);
-    // NSString *referenceImagePath2x = [NSString stringWithFormat:@"%@/UIImageASCII/ascii@2x.png", @(FB_REFERENCE_IMAGE_DIR)];
     // [asciiImageData writeToFile:referenceImagePath2x options:NSDataWritingAtomic error:nil];
 
-    NSString *referenceImagePath = [NSString stringWithFormat:@"%@/UIImageASCII/ascii.png", @(FB_REFERENCE_IMAGE_DIR)];
-    NSLog(@"%@", referenceImagePath);
-    UIImage *referenceImage = [UIImage imageWithContentsOfFile:referenceImagePath];
+    UIImage *referenceImage = [UIImage imageWithContentsOfFile:referenceImagePath2x];
     expect([asciiImage compareWithImage:referenceImage]).to.beTruthy();
 });
 
