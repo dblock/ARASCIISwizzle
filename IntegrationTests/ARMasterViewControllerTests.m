@@ -13,19 +13,20 @@
 
 SpecBegin(ARMasterViewController)
 
-NSString *UIDeviceOrientationKey = @"Device Orientation";
+// TODO: use shared examples once XCTool next has been released
+// see https://github.com/facebook/xctool/issues/273
 
 beforeAll(^{
     setGlobalReferenceImageDir(FB_REFERENCE_IMAGE_DIR);
 });
 
-sharedExamplesFor(@"ascii toggle", ^(NSDictionary *data) {
-    
-    __block UIWindow *window;
-    
+__block UIWindow *window;
+__block UIInterfaceOrientation deviceOrientation;
+
+describe(@"portrait", ^{
     beforeEach(^{
-        id deviceOrientation = [data valueForKey:UIDeviceOrientationKey];
-        objc_msgSend([UIDevice currentDevice], @selector(setOrientation:), [deviceOrientation integerValue]);
+        deviceOrientation = UIInterfaceOrientationPortrait;
+        objc_msgSend([UIDevice currentDevice], @selector(setOrientation:), deviceOrientation);
         window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     });
     
@@ -38,7 +39,7 @@ sharedExamplesFor(@"ascii toggle", ^(NSDictionary *data) {
         window.rootViewController = vc;
         expect(vc.view).willNot.beNil();
         [window makeKeyAndVisible];
-        expect(window).will.haveValidSnapshotNamed([NSString stringWithFormat:@"%@/default", [data valueForKey:UIDeviceOrientationKey]]);
+        expect(window).will.haveValidSnapshotNamed([NSString stringWithFormat:@"%@/default", @(deviceOrientation)]);
     });
     
     it(@"switches to ascii", ^AsyncBlock{
@@ -53,14 +54,49 @@ sharedExamplesFor(@"ascii toggle", ^(NSDictionary *data) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             [NSThread sleepForTimeInterval:1.0];
             dispatch_async(dispatch_get_main_queue(), ^{
-                expect(window).will.haveValidSnapshotNamed([NSString stringWithFormat:@"%@/ascii", [data valueForKey:UIDeviceOrientationKey]]);
+                expect(window).will.haveValidSnapshotNamed([NSString stringWithFormat:@"%@/ascii", @(deviceOrientation)]);
                 done();
             });
         });
     });
 });
 
-itShouldBehaveLike(@"ascii toggle", @{ UIDeviceOrientationKey : @(UIInterfaceOrientationPortrait) });
-itShouldBehaveLike(@"ascii toggle", @{ UIDeviceOrientationKey : @(UIInterfaceOrientationLandscapeLeft) });
+describe(@"landscape", ^{
+    beforeEach(^{
+        deviceOrientation = UIDeviceOrientationLandscapeRight;
+        objc_msgSend([UIDevice currentDevice], @selector(setOrientation:), deviceOrientation);
+        window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    });
+    
+    it(@"displays image", ^{
+        UIFont.ascii = NO;
+        UIImageView.ascii = NO;
+        expect(UIFont.ascii).to.beFalsy();
+        expect(UIImageView.ascii).to.beFalsy();
+        ARMasterViewController *vc = [[ARMasterViewController alloc] init];
+        window.rootViewController = vc;
+        expect(vc.view).willNot.beNil();
+        [window makeKeyAndVisible];
+        expect(window).will.haveValidSnapshotNamed([NSString stringWithFormat:@"%@/default", @(deviceOrientation)]);
+    });
+    
+    it(@"switches to ascii", ^AsyncBlock{
+        UIFont.ascii = YES;
+        UIImageView.ascii = YES;
+        expect(UIFont.ascii).to.beTruthy();
+        expect(UIImageView.ascii).to.beTruthy();
+        ARMasterViewController *vc = [[ARMasterViewController alloc] init];
+        window.rootViewController = vc;
+        expect(vc.view).willNot.beNil();
+        [window makeKeyAndVisible];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            [NSThread sleepForTimeInterval:1.0];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                expect(window).will.haveValidSnapshotNamed([NSString stringWithFormat:@"%@/ascii", @(deviceOrientation)]);
+                done();
+            });
+        });
+    });
+});
 
 SpecEnd
