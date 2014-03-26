@@ -6,6 +6,7 @@ PODS:
     - FBSnapshotTestCase
   - FBSnapshotTestCase (HEAD based on 1.1)
   - FLKAutoLayout (0.1.1)
+  - OCMock (2.2.3)
   - Specta (0.2.1)
 
 DEPENDENCIES:
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - EXPMatchers+FBSnapshotTest (HEAD)
   - FBSnapshotTestCase (HEAD)
   - FLKAutoLayout (~> 0.1.1)
+  - OCMock (~> 2.2.3)
   - Specta (~> 0.2.1)
 
 EXTERNAL SOURCES:
@@ -26,6 +28,7 @@ SPEC CHECKSUMS:
   EXPMatchers+FBSnapshotTest: 1b9506577e494191565ff51ffd5b1e76339d727b
   FBSnapshotTestCase: 188c80bfcb72e744eb0b99d45989d12687c40cf8
   FLKAutoLayout: fc04b932009174d4118ef4bda9dc8fedf1369efc
+  OCMock: 74e4ddbcef134170dcc844f91c691f13868075d7
   Specta: 2d06220591110c6d9757d8be8ecf8e63aa40dc2a
 
 COCOAPODS: 0.29.0

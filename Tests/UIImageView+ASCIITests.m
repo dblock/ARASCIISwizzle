@@ -7,6 +7,8 @@
 //
 
 #import <ARASCIISwizzle/UIImageView+ASCII.h>
+#import <ARASCIISwizzle/UIImage+ASCII.h>
+#import "OCMockObject+VerifyWithDelay.h"
 
 SpecBegin(UIImageViewASCII)
 
@@ -14,14 +16,46 @@ afterEach(^{
     UIImageView.ascii = NO;
 });
 
-it(@"no", ^{
-    UIImageView.ascii = NO;
-    expect(UIImageView.ascii).to.beFalsy();
+describe(@"no", ^{
+    beforeEach(^{
+        UIImageView.ascii = NO;
+    });
+    
+    it(@"toggle", ^{
+        expect(UIImageView.ascii).to.beFalsy();
+    });
+
+    it(@"does not convert image to ASCII", ^{
+        NSString *imagePath = [[NSBundle bundleForClass:self.class] pathForResource:@"rogier-van-der-weyden-portrait-of-a-lady" ofType:@"jpg"];
+        UIImage *portraitOfLady = [UIImage imageWithContentsOfFile:imagePath];
+        id imageMock = [OCMockObject partialMockForObject:portraitOfLady];
+        [[imageMock reject] asciiImage:OCMOCK_ANY color:OCMOCK_ANY];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:portraitOfLady];
+        expect(imageView).toNot.beNil();
+        [imageMock verifyAfterDelay:1];
+        [imageMock stopMocking];
+    });
 });
 
-it(@"yes", ^{
-    UIImageView.ascii = YES;
-    expect(UIImageView.ascii).to.beTruthy();
+describe(@"yes", ^{
+    beforeEach(^{
+        UIImageView.ascii = YES;
+    });
+    
+    it(@"toggle", ^{
+        expect(UIImageView.ascii).to.beTruthy();
+    });
+    
+    it(@"converts image to ASCII", ^{
+        NSString *imagePath = [[NSBundle bundleForClass:self.class] pathForResource:@"rogier-van-der-weyden-portrait-of-a-lady" ofType:@"jpg"];
+        UIImage *portraitOfLady = [UIImage imageWithContentsOfFile:imagePath];
+        id imageMock = [OCMockObject partialMockForObject:portraitOfLady];
+        [[imageMock expect] asciiImage:OCMOCK_ANY color:OCMOCK_ANY];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:portraitOfLady];
+        expect(imageView).toNot.beNil();
+        [imageMock verifyWithDelay:1];
+        [imageMock stopMocking];
+    });
 });
 
 SpecEnd

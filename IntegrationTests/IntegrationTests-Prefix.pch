@@ -14,12 +14,12 @@
 
 #ifdef __OBJC__
 
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-    #define EXP_SHORTHAND
-    #include <Specta/Specta.h>
-    #include <Expecta/Expecta.h>
-    #include <EXPMatchers+FBSnapshotTest/EXPMatchers+FBSnapshotTest.h>
+#define EXP_SHORTHAND
+#import <Specta/Specta.h>
+#import <Expecta/Expecta.h>
+#import <EXPMatchers+FBSnapshotTest/EXPMatchers+FBSnapshotTest.h>
 
 #endif

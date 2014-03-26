@@ -22,5 +22,6 @@ target 'Tests' do
   pod 'Expecta', '~> 0.2.3'
   pod 'FBSnapshotTestCase', :head
   pod 'EXPMatchers+FBSnapshotTest', :head
+  pod 'OCMock', '~> 2.2.3'
   xcodeproj 'Tests.xcodeproj'
 end

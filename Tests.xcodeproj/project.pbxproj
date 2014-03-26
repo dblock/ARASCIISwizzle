@@ -12,6 +12,8 @@
 		3C68375B18E2047C001E4806 /* UIImage+ASCIITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C68375A18E2047C001E4806 /* UIImage+ASCIITests.m */; };
 		3C8B0D3C18E205670047DEF3 /* rogier-van-der-weyden-portrait-of-a-lady.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3C8B0D3B18E205670047DEF3 /* rogier-van-der-weyden-portrait-of-a-lady.jpg */; };
 		3C8B0D3E18E236540047DEF3 /* UIImageView+ASCIITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8B0D3D18E236540047DEF3 /* UIImageView+ASCIITests.m */; };
+		3CB5DA0718E2382B00C88BC8 /* UIFont+ASCIITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB5DA0618E2382B00C88BC8 /* UIFont+ASCIITests.m */; };
+		3CB5DA0B18E2FD8B00C88BC8 /* OCMockObject+VerifyWithDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB5DA0A18E2FD8B00C88BC8 /* OCMockObject+VerifyWithDelay.m */; };
 		3CFB65C018E200F600E00693 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFB65BF18E200F600E00693 /* XCTest.framework */; };
 		3CFB65C218E200F600E00693 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFB65C118E200F600E00693 /* Foundation.framework */; };
 		3CFB65C418E200F600E00693 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CFB65C318E200F600E00693 /* UIKit.framework */; };
@@ -23,6 +25,9 @@
 		3C68375A18E2047C001E4806 /* UIImage+ASCIITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ASCIITests.m"; sourceTree = "<group>"; };
 		3C8B0D3B18E205670047DEF3 /* rogier-van-der-weyden-portrait-of-a-lady.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "rogier-van-der-weyden-portrait-of-a-lady.jpg"; path = "Images/rogier-van-der-weyden-portrait-of-a-lady.jpg"; sourceTree = "<group>"; };
 		3C8B0D3D18E236540047DEF3 /* UIImageView+ASCIITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ASCIITests.m"; sourceTree = "<group>"; };
+		3CB5DA0618E2382B00C88BC8 /* UIFont+ASCIITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+ASCIITests.m"; sourceTree = "<group>"; };
+		3CB5DA0918E2FD8B00C88BC8 /* OCMockObject+VerifyWithDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCMockObject+VerifyWithDelay.h"; sourceTree = "<group>"; };
+		3CB5DA0A18E2FD8B00C88BC8 /* OCMockObject+VerifyWithDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCMockObject+VerifyWithDelay.m"; sourceTree = "<group>"; };
 		3CFB65BC18E200F600E00693 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CFB65BF18E200F600E00693 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3CFB65C118E200F600E00693 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -59,6 +64,15 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		3CB5DA0818E2FD7500C88BC8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3CB5DA0918E2FD8B00C88BC8 /* OCMockObject+VerifyWithDelay.h */,
+				3CB5DA0A18E2FD8B00C88BC8 /* OCMockObject+VerifyWithDelay.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		3CFB65B118E200BF00E00693 = {
 			isa = PBXGroup;
 			children = (
@@ -93,10 +107,12 @@
 		3CFB65C518E200F600E00693 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				3CB5DA0818E2FD7500C88BC8 /* Extensions */,
 				3C8B0D3A18E2055F0047DEF3 /* Images */,
 				3C68375A18E2047C001E4806 /* UIImage+ASCIITests.m */,
 				3CFB65C618E200F600E00693 /* Supporting Files */,
 				3C8B0D3D18E236540047DEF3 /* UIImageView+ASCIITests.m */,
+				3CB5DA0618E2382B00C88BC8 /* UIFont+ASCIITests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -209,7 +225,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C8B0D3E18E236540047DEF3 /* UIImageView+ASCIITests.m in Sources */,
+				3CB5DA0718E2382B00C88BC8 /* UIFont+ASCIITests.m in Sources */,
 				3C68375B18E2047C001E4806 /* UIImage+ASCIITests.m in Sources */,
+				3CB5DA0B18E2FD8B00C88BC8 /* OCMockObject+VerifyWithDelay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,10 +298,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -322,9 +341,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = xctest;
 			};
