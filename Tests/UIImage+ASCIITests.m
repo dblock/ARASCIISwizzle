@@ -25,7 +25,8 @@ it(@"asciiText", ^{
     expect([asciiText substringToIndex:5]).to.equal(@"*****");
 });
 
-it(@"asciiImage", ^{
+// TODO: https://github.com/dblock/ARASCIISwizzle/issues/4
+pending(@"asciiImage", ^{
     expect(portraitOfLady).toNot.beNil();
     UIImage *asciiImage = [portraitOfLady asciiImage:[UIFont fontWithName:@"Courier New" size:12.0f] color:[UIColor yellowColor]];
     expect(asciiImage).toNot.beNil();
