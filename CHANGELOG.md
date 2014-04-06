@@ -1,3 +1,7 @@
+## Next
+
+* Your contribution here.
+
 ## 1.1.0 (4/6/2014) 
 
 * [#2](https://github.com/dblock/ARASCIISwizzle/issues/2): Added [UIImage+ASCII](Classes/UIImage+ASCII.h) API - [@dblock](https://github.com/dblock).

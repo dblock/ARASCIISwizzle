@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "ARASCIISwizzle"
-  s.version          = "1.1.0"
+  s.version          = "1.2.0"
   s.summary          = "Swizzle your iOS project into ASCII art."
   s.description      = "Replaces images by ASCII art and fonts by Courier."
   s.homepage         = "https://github.com/dblock/ARASCIISwizzle"
