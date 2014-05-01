@@ -1,12 +1,12 @@
 PODS:
-  - ARASCIISwizzle (1.0.0)
+  - ARASCIISwizzle (1.2.0)
   - Expecta (0.2.4)
-  - EXPMatchers+FBSnapshotTest (HEAD based on 1.0):
+  - EXPMatchers+FBSnapshotTest (HEAD based on 1.1.0):
     - Expecta
     - FBSnapshotTestCase
   - FBSnapshotTestCase (HEAD based on 1.1)
   - FLKAutoLayout (0.1.1)
-  - OCMock (2.2.3)
+  - OCMock (2.2.4)
   - Specta (0.2.1)
 
 DEPENDENCIES:
@@ -23,12 +23,12 @@ EXTERNAL SOURCES:
     :path: ARASCIISwizzle.podspec
 
 SPEC CHECKSUMS:
-  ARASCIISwizzle: 7e1cb2a41f048f176cf742127a706bbd2f5aebfa
+  ARASCIISwizzle: 60a7a43b9fc87ab40e7969a0d148eeef0ca629a0
   Expecta: 5c147dedfea5fbcf773995f7e65020abcc936ce5
-  EXPMatchers+FBSnapshotTest: 1b9506577e494191565ff51ffd5b1e76339d727b
+  EXPMatchers+FBSnapshotTest: cf5bf37817741d89bd3a3ff80be7ff417692ab7d
   FBSnapshotTestCase: 188c80bfcb72e744eb0b99d45989d12687c40cf8
   FLKAutoLayout: fc04b932009174d4118ef4bda9dc8fedf1369efc
-  OCMock: 74e4ddbcef134170dcc844f91c691f13868075d7
+  OCMock: 5008fae4b4789b8fc3e48cd7660f2eb5ef8ce89e
   Specta: 2d06220591110c6d9757d8be8ecf8e63aa40dc2a
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.32.1
