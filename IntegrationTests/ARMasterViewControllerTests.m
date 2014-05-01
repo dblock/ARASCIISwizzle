@@ -21,11 +21,11 @@ beforeAll(^{
 });
 
 __block UIWindow *window;
-__block UIInterfaceOrientation deviceOrientation;
+__block UIDeviceOrientation deviceOrientation;
 
 describe(@"portrait", ^{
     beforeEach(^{
-        deviceOrientation = UIInterfaceOrientationPortrait;
+        deviceOrientation = UIDeviceOrientationPortrait;
         objc_msgSend([UIDevice currentDevice], @selector(setOrientation:), deviceOrientation);
         window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     });
