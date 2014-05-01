@@ -21,22 +21,19 @@
     UIImage *portraitOfLadyImage = [UIImage imageNamed:@"Images/rogier-van-der-weyden-portrait-of-a-lady.jpg"];
     UIImageView *portraitOfLady = [[UIImageView alloc] initWithImage:portraitOfLadyImage];
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    
+
+    [self.view addSubview:portraitOfLady];
+    CGFloat targetWidth = CGRectGetWidth([UIScreen mainScreen].bounds) * 0.5f;
+    [portraitOfLady constrainHeight:[NSString stringWithFormat:@"%@", @(targetWidth / portraitOfLadyImage.size.width * portraitOfLadyImage.size.height)]];
+    [portraitOfLady constrainWidth:[NSString stringWithFormat:@"%@", @(targetWidth)]];
+
     if (UIDeviceOrientationIsPortrait(orientation))
     {
-        [self.view addSubview:portraitOfLady];
-        CGFloat targetWidth = CGRectGetWidth([UIScreen mainScreen].bounds) * 0.7f;
-        [portraitOfLady constrainHeight:[NSString stringWithFormat:@"%@", @(targetWidth / portraitOfLadyImage.size.width * portraitOfLadyImage.size.height)]];
-        [portraitOfLady constrainWidth:[NSString stringWithFormat:@"%@", @(targetWidth)]];
         [portraitOfLady alignCenterXWithView:self.view predicate:@"0"];
         [portraitOfLady alignTopEdgeWithView:self.view predicate:@"100"];
     }
     else
     {
-        [self.view addSubview:portraitOfLady];
-        CGFloat targetWidth = CGRectGetWidth([UIScreen mainScreen].bounds) * 0.5f;
-        [portraitOfLady constrainHeight:[NSString stringWithFormat:@"%@", @(targetWidth / portraitOfLadyImage.size.width * portraitOfLadyImage.size.height)]];
-        [portraitOfLady constrainWidth:[NSString stringWithFormat:@"%@", @(targetWidth)]];
         [portraitOfLady alignLeadingEdgeWithView:self.view predicate:@"100"];
         [portraitOfLady alignTopEdgeWithView:self.view predicate:@"75"];
     }
